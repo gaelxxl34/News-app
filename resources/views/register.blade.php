@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Register</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <!-- Font Awesome -->
@@ -42,12 +42,11 @@
         height: 100vh;
       }
 
+    
 
       .navbar .nav-link {
         color: #fff !important;
       }
-
-
     </style>
 
 </head>
@@ -57,31 +56,30 @@
         <div class="container">
             <a class="navbar-brand mx-auto" href="welcome">
                 <!-- Replace 'logo.png' with your logo file -->
-                <h1 class="m-0 display-15S text-uppercase">Near <span class="text-primary">East </span>News</h1>
+                <h1 class="m-0 display-15 text-uppercase">Near <span class="text-primary">East </span>News</h1>
             </a>
         </div>
     </nav>
 
    
-
-<!-- login.blade.php -->
-
-<!-- Background image -->
+<!-- Registration Form -->
 <div id="intro" class="bg-image shadow-2-strong">
     <div class="mask d-flex align-items-center h-100" style="background-color: rgba(0, 0, 0, 0.8);">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-xl-5 col-md-8">
+
+
                 <div class="bg-white rounded-5 shadow-5-strong p-1">
                     <!-- Simple Text Header -->
-                    <h2 class="text-center mb-0 ">Sign in</h2>
+                    <h2 class="text-center mb-0 ">Register</h2>
 
-
-                    <form id="loginForm" action="{{ route('login') }}" method="POST" class="bg-white rounded-5 shadow-5-strong p-5">
+                    <form id="registrationForm" action="{{ route('register') }}" method="POST" class="bg-white rounded-5 shadow-5-strong p-5">
                         @csrf <!-- CSRF Token -->
+
                         <!-- Email input -->
                         <div class="form-outline mb-4">
-                            <input type="email" id="email" name="email" class="form-control" />
+                            <input type="email" id="email" name="email" class="form-control" required />
                             <label class="form-label" for="email">Email address</label>
                             @error('email')
                                 <div class="text-danger">{{ $message }}</div>
@@ -90,35 +88,30 @@
 
                         <!-- Password input -->
                         <div class="form-outline mb-4">
-                            <input type="password" id="password" name="password" class="form-control" />
+                            <input type="password" id="password" name="password" class="form-control" required />
                             <label class="form-label" for="password">Password</label>
                             @error('password')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
 
-                     
-                        <!-- Forgot Password Link -->
-                        <p class="text-center mb-3">
-                            <a href="{{ route('forget-password') }}">Forgot Password?</a>
-                        </p>
                         <!-- Submit button -->
-                        <button type="submit" class="btn btn-primary btn-block">Sign in</button>
-                        @if ($errors->has('login_error'))
-                            <p class="mt-3 text-danger">{{ $errors->first('login_error') }}</p>
-                        @endif
-                            <!-- Center-aligned text for users who don't have an account -->
+                        <button type="submit" class="btn btn-primary btn-block">Register</button>
+                        <!-- Text for users who already have an account -->
                         <p class="mt-3 text-center">
-                            Don't have an account? <a href="{{ route('register') }}">Register here</a>
+                            Already have an account? <a href="{{ route('login') }}">Log in</a>
                         </p>
                     </form>
                     </div>
                 </div>
+            
             </div>
         </div>
     </div>
 </div>
-<!-- Background image -->
+<!-- End Registration Form -->
+
+
 
 
 
