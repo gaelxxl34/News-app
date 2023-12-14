@@ -34,25 +34,66 @@ class FirebaseAuthController extends Controller
          return view('forget-password'); // Ensure this matches your Blade template name
      }
 
-     
-
-     public function login(Request $request)
+     public function Home()
      {
-         $request->validate([
-             'email' => 'required|email',
-             'password' => 'required',
-         ]);
-     
-         try {
-             $signInResult = $this->auth->signInWithEmailAndPassword($request->email, $request->password);
-             session(['user_email' => $request->email]); // Store email in session
-             return redirect()->intended('home'); // Redirect to 'home' or any other route
-         } catch (\Throwable $e) {
-             // Redirect back with error message
-             return back()->withErrors(['login_error' => 'Invalid email or password.']);
-         }
+         return view('home'); 
      }
-     
+
+
+     public function adminDashboard()
+     {
+         return view('admin_dashboard');
+     }
+
+
+     public function journalistDashboard()
+     {
+         return view('journalist_dashboard'); 
+     }
+
+
+
+public function login(Request $request)
+{
+    $request->validate([
+        'email' => 'required|email',
+        'password' => 'required',
+    ]);
+
+    try {
+        $signInResult = $this->auth->signInWithEmailAndPassword($request->email, $request->password);
+        $uid = $signInResult->firebaseUserId();
+
+        // Retrieve user role from Firestore
+        $firestore = app('firebase.firestore');
+        $database = $firestore->database();
+        $userDoc = $database->collection('Users')->document($uid)->snapshot();
+
+        if ($userDoc->exists()) {
+            $userData = $userDoc->data();
+            $userRole = $userData['role'] ?? null;
+
+            // Start session with user data
+            session(['user_email' => $request->email, 'user_role' => $userRole]);
+
+            // Redirect based on user role
+            if ($userRole === 'admin') {
+                return redirect('admin_dashboard');
+            } elseif ($userRole === 'journalist') {
+                return redirect('journalist_dashboard');
+            } elseif ($userRole === 'user') {
+                return redirect('home');
+            } else {
+                return redirect('welcome');
+            }
+        }
+
+        return redirect('welcome');
+    } catch (\Throwable $e) {
+        return back()->withErrors(['login_error' => 'Invalid email or password.']);
+    }
+}
+
 
 
 
@@ -62,7 +103,7 @@ class FirebaseAuthController extends Controller
              'email' => 'required|email',
              'password' => 'required|min:6',
          ]);
-     
+
          try {
              $userProperties = [
                  'email' => $request->email,
@@ -71,7 +112,7 @@ class FirebaseAuthController extends Controller
                  'disabled' => false,
              ];
              $createdUser = $this->auth->createUser($userProperties);
-     
+
              // Add user data to Firestore
              $firestore = app('firebase.firestore');
              $database = $firestore->database();
@@ -80,7 +121,7 @@ class FirebaseAuthController extends Controller
                  'email' => $request->email,
                  'role' => 'user'
              ]);
-     
+
              // Start session after successful Firestore entry
              session(['user_email' => $request->email]);
              return redirect('home'); // Redirect to the home page
@@ -88,24 +129,24 @@ class FirebaseAuthController extends Controller
              return back()->withErrors(['error' => $e->getMessage()]);
          }
      }
-     
-    
 
-    
+
+
+
 
     public function sendPasswordResetLink(Request $request)
     {
         $request->validate([
             'email' => 'required|email',
         ]);
-    
+
         try {
             // Check if user exists in Firebase
             $user = $this->auth->getUserByEmail($request->email);
-    
+
             // If the user exists, send the password reset link
             $this->auth->sendPasswordResetLink($request->email);
-    
+
             return back()->with('status', 'Password reset link sent to your email.');
         } catch (UserNotFound $e) {
             // User not found in Firebase
@@ -115,7 +156,7 @@ class FirebaseAuthController extends Controller
             return back()->with('error', 'Unable to send password reset link.');
         }
     }
-    
+
 
 
 
@@ -123,7 +164,7 @@ class FirebaseAuthController extends Controller
     {
         // Retrieve the UID from the session
         $uid = session('uid'); 
-    
+
         if ($uid) {
             $this->auth->revokeRefreshTokens($uid);
             session()->flush(); // Clear the session
@@ -132,5 +173,5 @@ class FirebaseAuthController extends Controller
             return redirect('/')->withErrors(['error' => 'No active session found']);
         }
     }
-    
+
 }

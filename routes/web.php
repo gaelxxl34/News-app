@@ -14,7 +14,20 @@ Route::get('/forget-password', [FirebaseAuthController::class, 'showForgetPasswo
 Route::get('register', [FirebaseAuthController::class, 'showRegistrationForm'])->name('register');
 Route::post('register', [FirebaseAuthController::class, 'register']);
 Route::post('logout', [FirebaseAuthController::class, 'logout'])->name('logout');
-Route::get('home', [FirebaseAuthController::class, 'home'])->name('home');
+
+
+Route::get('home', [FirebaseAuthController::class, 'Home'])
+->middleware('checkrole:user')
+->name('home');
+
+Route::get('/admin_dashboard', [FirebaseAuthController::class, 'adminDashboard'])
+->middleware('checkrole:admin')
+->name('admin_dashboard');
+
+Route::get('/journalist_dashboard', [FirebaseAuthController::class, 'journalistDashboard'])
+->middleware('checkrole:journalist')
+->name('journalist_dashboard');
+// ... other routes ...
 
 
 /*
@@ -40,12 +53,8 @@ Route::get('welcome', function () {
 //     return view('login');
 // });
 
-Route::get('home', function () {
-    return view('home');
-});
+
 
 Route::get('trial', function () {
     return view('trial');
 });
-
-

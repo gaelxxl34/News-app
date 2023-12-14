@@ -227,20 +227,6 @@
     });
 
 
-    var firebaseConfig = {
-        apiKey: "AIzaSyDz4p61RGPcobesAG_6N8ZeoYYHdcA4dRY",
-        authDomain: "near-east-news.firebaseapp.com",
-        databaseURL: "https://near-east-news-default-rtdb.firebaseio.com",
-        projectId: "near-east-news",
-        storageBucket: "near-east-news.appspot.com",
-        messagingSenderId: "636068885026",
-        appId: "1:636068885026:web:3392bbb62885fcc321107b",
-        measurementId: "G-NX5QGYB1MM"
-    };
-
-
-     // Initialize Firebase
-     firebase.initializeApp(firebaseConfig);
 </script>
 
 

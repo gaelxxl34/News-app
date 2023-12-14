@@ -281,47 +281,7 @@
             <main class="content px-3 py-2">
                 <div class="container-fluid">
                     <div class="mb-3">
-                        <h3  style="color: black">Bootstrap Sidebar Tutorial</h3>
-                    </div>
-                </div>
-
-
-                <div id="apexcharts-area"></div>
-
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-3 col-12 mb-3">
-                            <div class="card text-white bg-primary">
-                                <div class="card-body">
-                                    <h5 class="card-title"><i class="fa-solid fa-newspaper"></i> Published Articles</h5>
-                                    <p class="card-text">123</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-12 mb-3">
-                            <div class="card text-white bg-success">
-                                <div class="card-body">
-                                    <h5 class="card-title"><i class="fa-solid fa-users"></i> Journalists</h5>
-                                    <p class="card-text">15</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-12 mb-3">
-                            <div class="card text-white bg-warning">
-                                <div class="card-body">
-                                    <h5 class="card-title"><i class="fa-solid fa-clock"></i> Pending Articles</h5>
-                                    <p class="card-text">5</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-12 mb-3">
-                            <div class="card text-white bg-info">
-                                <div class="card-body">
-                                    <h5 class="card-title"><i class="fa-solid fa-chart-line"></i> All Users</h5>
-                                    <p class="card-text">10,000</p>
-                                </div>
-                            </div>
-                        </div>
+                        <h3  style="color: black">Welcome Dear journalist!!</h3>
                     </div>
                 </div>
 
@@ -353,38 +313,7 @@
 
     </script>
 
-    <script>
-            var options = {
-    chart: {
-        height: 350,
-        type: "area",
-    },
-    dataLabels: {
-        enabled: false
-    },
-    stroke: {
-        curve: "smooth"
-    },
-    series: [{
-        name: "series1",
-        data: [31, 40, 28, 51, 42, 109, 100]
-    }, {
-        name: "series2",
-        data: [11, 32, 45, 32, 34, 52, 41]
-    }],
-    xaxis: {
-        type: "datetime",
-        categories: ["2018-09-19T00:00:00", "2018-09-19T01:30:00", "2018-09-19T02:30:00", "2018-09-19T03:30:00", "2018-09-19T04:30:00", "2018-09-19T05:30:00", "2018-09-19T06:30:00"],
-    },
-    tooltip: {
-        x: {
-            format: "dd/MM/yy HH:mm"
-        },
-    }
-}
-var chart = new ApexCharts(document.querySelector("#apexcharts-area"), options);
-chart.render();
-    </script>
+
 </body>
 
 </html>
