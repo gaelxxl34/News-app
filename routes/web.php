@@ -30,7 +30,86 @@ Route::get('/journalist_dashboard', [FirebaseAuthController::class, 'journalistD
 // ... other routes ...
 
 
-/*
+// Admin pages routes published-articles
+Route::get('/admin/pending-articles', function () {
+    return view('admin pages.pending-articles');
+})->middleware('checkrole:admin')->name('admin.pending-articles');
+
+
+Route::get('/admin/single-articles', function () {
+    return view('admin pages.single-articles');
+})->middleware('checkrole:admin')->name('admin.single-articles');
+
+
+Route::get('/admin/published-articles', function () {
+    return view('admin pages.published-articles');
+})->middleware('checkrole:admin')->name('admin.published-articles');
+
+
+Route::get('/admin/single-published-article', function () {
+    return view('admin pages.single-published-article');
+})->middleware('checkrole:admin')->name('admin.single-published-article');
+
+
+
+Route::get('/admin/add-journalist', function () {
+    return view('admin pages.add-journalist');
+})->middleware('checkrole:admin')->name('admin.add-journalist');
+
+
+
+Route::get('/admin/journalist-list', function () {
+    return view('admin pages.journalist-list');
+})->middleware('checkrole:admin')->name('admin.journalist-list');
+
+
+
+// Journalist pages routes published-articles
+
+Route::get('/journalist/add-articles', function () {
+    return view('journalist pages.add-articles');
+})->middleware('checkrole:journalist')->name('journalist.add-articles');
+
+
+Route::get('/journalist/pending', function () {
+    return view('journalist pages.pending');
+})->middleware('checkrole:journalist')->name('journalist.pending');
+
+
+
+Route::get('/journalist/published', function () {
+    return view('journalist pages.published');
+})->middleware('checkrole:journalist')->name('journalist.published');
+
+
+
+
+Route::get('/journalist/full-pending-article', function () {
+    return view('journalist pages.full-pending-article');
+})->middleware('checkrole:journalist')->name('journalist.full-pending-article');
+
+
+Route::get('/journalist/full-published-article', function () {
+    return view('journalist pages.full-published-article');
+})->middleware('checkrole:journalist')->name('journalist.full-published-article');
+
+
+
+Route::get('/journalist/edit-article', function () {
+    return view('journalist pages.edit-article');
+})->middleware('checkrole:journalist')->name('journalist.edit-article');
+
+
+// user pages routes
+Route::get('/user/categories', function () {
+    return view('user pages.categories');
+})->middleware('checkrole:user')->name('user.categories');
+
+
+Route::get('/user/contact', function () {
+    return view('user pages.contact');
+})->middleware('checkrole:user')->name('user.contact');
+/* full-pending-article
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
