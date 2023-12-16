@@ -39,11 +39,12 @@
     <!-- Topbar Start -->
     <div class="container-fluid">
        
-        <div class="row align-items-center py-2 px-lg-5">
-            <div class="col-lg-4">
-                <a href="" class="navbar-brand d-none d-lg-block">
-                    <h1 class="m-0 display-5 text-uppercase">Near <span class="text-primary">East </span>News</h1>
-                </a>
+    <div class="row align-items-center py-2 px-lg-5  bg-gray bg-lg-transparent mt-0 mt-lg-2">
+        <!-- Logo Section -->
+        <div class="col-lg-4 d-none d-lg-block bg-black">
+            <a href="{{ route('home') }}" class="navbar-brand">
+                <img src="../assets/img/logo.png" alt="Your Logo" class="img-fluid" style="max-height: 300px; max-width: 400px; margin-left: -70px">
+            </a>
             </div>
             <div class="col-lg-8 text-center text-lg-right">
                 <a href="login"><button class="btn btn-dark">Login</button></a>
@@ -56,9 +57,10 @@
     <!-- Navbar Start -->
     <div class="container-fluid p-0 mb-5">
         <nav class="navbar navbar-expand-lg bg-white navbar-light py-2 py-lg-0 px-lg-5">
-            <a href="" class="navbar-brand d-block d-lg-none">
-                <h1 class="m-0 display-5 text-uppercase">Near <span class="text-primary">East </span>News</h1>
+            <a href="{{ route('home') }}" class="navbar-brand d-block d-lg-none">
+                <img src="../assets/img/logo.png" alt="Your Logo"  class="img-fluid" style="max-width: 270px; margin-left: -40px">
             </a>
+
             <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
             </button>

@@ -5,7 +5,7 @@
             <div class="h-100">
                 <div class="sidebar-logo">
                     <a href="#">
-                        <h4 class="text-uppercase">Near <span style="color: red;">East </span>News</h4>
+                    <img src="../assets/img/logoWhite.png" alt="Your Logo" class="img-fluid" style=" max-width: 320px; margin-left: -50px">
                     </a>
                 </div>
                 <!-- Sidebar Navigation -->
